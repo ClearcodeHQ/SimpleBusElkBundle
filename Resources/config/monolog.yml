@@ -1,0 +1,4 @@
+services:
+    elk_bridge.monolog.logstash_formatter:
+        class: Monolog\Formatter\LogstashFormatter
+        arguments: [ "%elk_bridge.logstash_namespace%" ]

@@ -1,0 +1,11 @@
+services:
+    elk_bridge.event_bus.object_to_array_by_getters_converter:
+        class: Clearcode\ElkBridgeBundle\Converter\ObjectToArrayByGettersConverter
+    elk_bridge.event_bus.log_event:
+        class: Clearcode\ElkBridgeBundle\CommandBus\LogEventMiddleware
+        arguments:
+            - @logger
+            - @elk_bridge.event_bus.object_to_array_by_getters_converter
+        tags:
+            - { name: event_bus_middleware, priority: 999 }
+            - { name: monolog.logger, channel: '%elk_bridge.channel%' }

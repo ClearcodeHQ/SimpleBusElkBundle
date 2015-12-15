@@ -1,0 +1,27 @@
+{
+  "name": "clearcode/elk-bridge",
+  "description": "ELK integration for Symfony2",
+  "type": "bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Clearcode",
+      "email": "dev@clearcode.cc"
+    }
+  ],
+  "require": {
+    "symfony/monolog-bundle": "~2.4",
+    "simple-bus/message-bus": "~2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Clearcode\\ElkBridgeBundle\\": ""
+    }
+  },
+  "autoload-dev": {
+    "psr-4" : { "tests\\Clearcode\\ElkBridgeBundle\\" : "tests" }
+  },
+  "require-dev": {
+    "phpunit/phpunit" : "~5.0"
+  }
+}
