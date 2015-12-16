@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/ClearcodeHQ/SimpleBusElkBundle.svg?branch=master)](https://travis-ci.org/ClearcodeHQ/SimpleBusElkBundle)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ClearcodeHQ/SimpleBusElkBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ClearcodeHQ/SimpleBusElkBundle/?branch=master)
+[![MIT License](https://img.shields.io/packagist/l/clearcode/SimpleBusElkBundle.svg)](https://github.com/ClearcodeHQ/SimpleBusElkBundle/blob/master/LICENSE)
+
 # ELK Bridge for Symfony2
 
 ## How to use:
