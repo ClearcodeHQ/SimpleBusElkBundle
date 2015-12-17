@@ -29,7 +29,7 @@ class LogEventMiddlewareTest extends \PHPUnit_Framework_TestCase
     public function it_logs_message_when_it_is_event()
     {
         $this->logger->info(Argument::cetera())->shouldBeCalled();
-//        $this->converter->toArray(Argument::any())->willReturn([]);
+        $this->converter->toArray(Argument::any())->willReturn([]);
 
         $this->sut->handle(new \stdClass(), $this->dummyCallable());
     }

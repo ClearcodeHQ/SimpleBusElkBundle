@@ -2,7 +2,7 @@
 
 namespace Clearcode\ElkBridgeBundle\CommandBus;
 
-use Clearcode\ElkBridgeBundle\Converter\ObjectToArrayConverter;
+use Clearcode\ElkBridgeBundle\Converter\ObjectToArrayConverterInterface;
 use Psr\Log\LoggerInterface;
 use SimpleBus\Message\Bus\Middleware\MessageBusMiddleware;
 
@@ -14,7 +14,7 @@ class LogEventMiddleware implements MessageBusMiddleware
     private $logger;
 
     /**
-     * @var ObjectToArrayConverter
+     * @var ObjectToArrayConverterInterface
      */
     private $converter;
 
@@ -23,7 +23,7 @@ class LogEventMiddleware implements MessageBusMiddleware
      *
      * @param LoggerInterface $logger
      */
-    public function __construct(LoggerInterface $logger, ObjectToArrayConverter $converter)
+    public function __construct(LoggerInterface $logger, ObjectToArrayConverterInterface $converter)
     {
         $this->logger    = $logger;
         $this->converter = $converter;
@@ -34,7 +34,7 @@ class LogEventMiddleware implements MessageBusMiddleware
      */
     public function handle($message, callable $next)
     {
-        $this->logger->info('Event recorded', ['event' => $this->converter->toArray($message)]);
+        $this->logger->info('Event recorded', $this->converter->toArray($message));
 
         $next($message);
     }
