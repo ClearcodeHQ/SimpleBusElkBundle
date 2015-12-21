@@ -21,7 +21,7 @@ class ElkBridgeExtension extends Extension
         $config        = $this->processConfiguration($configuration, $config);
 
         $container->setParameter('elk_bridge.logstash_namespace', $config['logstash_namespace']);
-        $container->setParameter('elk_bridge.channel', $config['channel']);
+        $container->setParameter('elk_bridge.monolog_channel', $config['monolog_channel']);
         $container->setParameter('elk_bridge.enabled', $config['enabled']);
 
         if ($config['enabled']) {

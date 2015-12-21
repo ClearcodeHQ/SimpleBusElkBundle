@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('logstash_namespace')
                     ->defaultValue('elk')
                 ->end()
-                ->scalarNode('channel')
+                ->scalarNode('monolog_channel')
                     ->defaultValue('event_bus_elk')
                 ->end()
             ->end()

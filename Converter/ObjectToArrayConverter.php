@@ -32,9 +32,14 @@ class ObjectToArrayConverter implements ObjectToArrayConverterInterface
         return [
             'event' => [
                 'name' => $this->getClassName($object),
-                'data' => json_decode($this->getSerializedObject($object), true),
+                'data' => $this->unserializeToArray($this->serialize($object)),
             ],
         ];
+    }
+
+    private function unserializeToArray($serializedObject)
+    {
+        return json_decode($serializedObject, true);
     }
 
     private function getClassName($object)
@@ -44,7 +49,7 @@ class ObjectToArrayConverter implements ObjectToArrayConverterInterface
         return $class->getShortName();
     }
 
-    private function getSerializedObject($object)
+    private function serialize($object)
     {
         return $this->serializer->serialize($object, 'json', SerializationContext::create()->setSerializeNull(true));
     }
