@@ -49,7 +49,7 @@ class AppKernel extends Kernel
 
 ```yaml
 elk_bridge:
-    enabled: ~
+    enable_simple_bus_middleware: true
     logstash_namespace: your_app
     monolog_channel: event_bus_elk
 
@@ -66,7 +66,7 @@ monolog:
 
 ##### III. Enable monolog logger in service:
 
-1. If you are using SimpleBus bundle just set ``elk_bridge.enabled`` to ``true``. It will enable Event middleware which will log your events automatically on ELK.
+1. If you are using SimpleBus bundle just set ``elk_bridge.enable_simple_bus_middleware`` to ``true``. It will enable Event middleware which will log your events automatically on ELK.
 
 2. Otherwise, just use our monolog channel as follow:
 

@@ -13,8 +13,9 @@ class Configuration implements ConfigurationInterface
         $rootNode    = $treeBuilder->root('elk_bridge');
 
         $rootNode
-            ->canBeEnabled()
             ->children()
+                ->booleanNode('enable_simple_bus_middleware')
+                    ->defaultValue(true)
                 ->scalarNode('logstash_namespace')
                     ->defaultValue('elk')
                 ->end()
