@@ -1,6 +1,6 @@
 <?php
 
-namespace Clearcode\ElkBridgeBundle\DependencyInjection;
+namespace Clearcode\SimpleBusElkBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -10,7 +10,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('elk_bridge');
+        $rootNode    = $treeBuilder->root('simple_bus_elk');
 
         $rootNode
             ->children()
@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('elk')
                 ->end()
                 ->scalarNode('monolog_channel')
-                    ->defaultValue('event_bus_elk')
+                    ->defaultValue('simple_bus_elk')
                 ->end()
             ->end()
         ;

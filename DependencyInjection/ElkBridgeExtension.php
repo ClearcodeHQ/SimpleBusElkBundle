@@ -1,6 +1,6 @@
 <?php
 
-namespace Clearcode\ElkBridgeBundle\DependencyInjection;
+namespace Clearcode\SimpleBusElkBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -20,9 +20,9 @@ class ElkBridgeExtension extends Extension
         $configuration = new Configuration();
         $config        = $this->processConfiguration($configuration, $config);
 
-        $container->setParameter('elk_bridge.logstash_namespace', $config['logstash_namespace']);
-        $container->setParameter('elk_bridge.monolog_channel', $config['monolog_channel']);
-        $container->setParameter('elk_bridge.enable_simple_bus_middleware', $config['enable_simple_bus_middleware']);
+        $container->setParameter('simple_bus_elk.logstash_namespace', $config['logstash_namespace']);
+        $container->setParameter('simple_bus_elk.monolog_channel', $config['monolog_channel']);
+        $container->setParameter('simple_bus_elk.enable_simple_bus_middleware', $config['enable_simple_bus_middleware']);
 
         if ($config['enable_simple_bus_middleware']) {
             $loader->load('event_bus.yml');
@@ -34,6 +34,6 @@ class ElkBridgeExtension extends Extension
      */
     public function getAlias()
     {
-        return 'elk_bridge';
+        return 'simple_bus_elk';
     }
 }

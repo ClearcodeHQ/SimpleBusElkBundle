@@ -1,11 +1,11 @@
 <?php
 
-namespace Clearcode\ElkBridgeBundle;
+namespace Clearcode\SimpleBusElkBundle;
 
-use Clearcode\ElkBridgeBundle\DependencyInjection\ElkBridgeExtension;
+use Clearcode\SimpleBusElkBundle\DependencyInjection\ElkBridgeExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class ElkBridgeBundle extends Bundle
+class SimpleBusElkBundle extends Bundle
 {
     public function getContainerExtension()
     {

@@ -1,12 +1,12 @@
 services:
-    elk_bridge.converter.to_array_converter:
-        class: Clearcode\ElkBridgeBundle\Converter\ObjectToArrayConverter
+    simple_bus_elk.converter.to_array_converter:
+        class: Clearcode\SimpleBusElkBundle\Converter\ObjectToArrayConverter
         arguments:
             - @jms_serializer
-    elk_bridge.monolog.logstash_formatter:
+    simple_bus_elk.monolog.logstash_formatter:
         class: Monolog\Formatter\LogstashFormatter
-        arguments: [ "%elk_bridge.logstash_namespace%" ]
-    elk_bridge.serializer.stringify_handler:
-        class: Clearcode\ElkBridgeBundle\Serializer\Handler\StringifyHandler
+        arguments: [ "%simple_bus_elk.logstash_namespace%" ]
+    simple_bus_elk.serializer.stringify_handler:
+        class: Clearcode\SimpleBusElkBundle\Serializer\Handler\StringifyHandler
         tags:
             - { name: jms_serializer.handler, type: Carbon\Carbon, direction: serialization, format: json, method: toDateTime }
