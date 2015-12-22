@@ -14,7 +14,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->booleanNode('enable_simple_bus_middleware')
+                ->booleanNode('middleware')
                     ->defaultValue(true)
                 ->scalarNode('logstash_namespace')
                     ->defaultValue('elk')

@@ -10,7 +10,7 @@
 
 ELK installed, Logstash config:
 
-```json
+```
 input {
   tcp {
     port => 5000
@@ -50,7 +50,7 @@ class AppKernel extends Kernel
 
 ```yaml
 simple_bus_elk:
-    enable_simple_bus_middleware: true
+    middleware: true
     logstash_namespace: your_app
     monolog_channel: simple_bus_elk
 
@@ -67,7 +67,7 @@ monolog:
 
 ##### III. Enable monolog logger in service:
 
-1. If you are using SimpleBus bundle just set ``simple_bus_elk.enable_simple_bus_middleware`` to ``true``. It will enable Event middleware which will log your events automatically on ELK.
+1. If you are using SimpleBus bundle just set ``simple_bus_elk.middleware`` to ``true``. It will enable Event middleware which will log your events automatically on ELK.
 
 2. Otherwise, just use our monolog channel as follow:
 

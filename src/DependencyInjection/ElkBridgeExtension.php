@@ -22,9 +22,9 @@ class ElkBridgeExtension extends Extension
 
         $container->setParameter('simple_bus_elk.logstash_namespace', $config['logstash_namespace']);
         $container->setParameter('simple_bus_elk.monolog_channel', $config['monolog_channel']);
-        $container->setParameter('simple_bus_elk.enable_simple_bus_middleware', $config['enable_simple_bus_middleware']);
+        $container->setParameter('simple_bus_elk.middleware', $config['middleware']);
 
-        if ($config['enable_simple_bus_middleware']) {
+        if ($config['middleware']) {
             $loader->load('event_bus.yml');
         }
     }
