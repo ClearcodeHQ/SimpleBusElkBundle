@@ -1,5 +1,5 @@
 {
-  "name": "clearcode/elk-bridge",
+  "name": "clearcode/simple-bus-elk-bundle",
   "description": "ELK integration for Symfony2",
   "type": "bundle",
   "license": "MIT",
