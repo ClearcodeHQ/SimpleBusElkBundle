@@ -6,7 +6,3 @@ services:
     elk_bridge.monolog.logstash_formatter:
         class: Monolog\Formatter\LogstashFormatter
         arguments: [ "%elk_bridge.logstash_namespace%" ]
-    elk_bridge.serializer.stringify_handler:
-        class: Clearcode\ElkBridgeBundle\Serializer\Handler\StringifyHandler
-        tags:
-            - { name: jms_serializer.handler, type: Carbon\Carbon, direction: serialization, format: json, method: toDateTime }
