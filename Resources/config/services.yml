@@ -6,7 +6,3 @@ services:
     simple_bus_elk.monolog.logstash_formatter:
         class: Monolog\Formatter\LogstashFormatter
         arguments: [ "%simple_bus_elk.logstash_namespace%" ]
-    simple_bus_elk.serializer.stringify_handler:
-        class: Clearcode\SimpleBusElkBundle\Serializer\Handler\StringifyHandler
-        tags:
-            - { name: jms_serializer.handler, type: Carbon\Carbon, direction: serialization, format: json, method: toDateTime }
