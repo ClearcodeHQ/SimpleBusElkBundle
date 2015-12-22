@@ -30,7 +30,7 @@ class ObjectToArrayConverterTest extends \PHPUnit_Framework_TestCase
     public function it_serializes_objects()
     {
         $object = new \stdClass();
-        $this->serializer->serialize($object, 'json', Argument::any())->willReturn('{"key": "value"}');
+        $this->serializer->toArray($object, Argument::any())->willReturn(['key' => 'value']);
 
         $data = $this->converter->toArray($object);
 
