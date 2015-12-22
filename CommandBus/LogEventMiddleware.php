@@ -1,8 +1,8 @@
 <?php
 
-namespace Clearcode\ElkBridgeBundle\CommandBus;
+namespace Clearcode\SimpleBusElkBundle\CommandBus;
 
-use Clearcode\ElkBridgeBundle\Converter\ObjectToArrayConverterInterface;
+use Clearcode\SimpleBusElkBundle\Converter\ObjectToArrayConverterInterface;
 use Psr\Log\LoggerInterface;
 use SimpleBus\Message\Bus\Middleware\MessageBusMiddleware;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Clearcode\ElkBridgeBundle\Converter;
+namespace Clearcode\SimpleBusElkBundle\Converter;
 
 class DataToConvertIsNotAnObject extends \Exception
 {

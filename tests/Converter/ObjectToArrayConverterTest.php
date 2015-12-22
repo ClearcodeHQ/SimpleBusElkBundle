@@ -1,8 +1,8 @@
 <?php
 
-namespace tests\Clearcode\ElkBridgeBundle\Converter;
+namespace tests\Clearcode\SimpleBusElkBundle\Converter;
 
-use Clearcode\ElkBridgeBundle\Converter\ObjectToArrayConverter;
+use Clearcode\SimpleBusElkBundle\Converter\ObjectToArrayConverter;
 use JMS\Serializer\Serializer;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -17,7 +17,7 @@ class ObjectToArrayConverterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \Clearcode\ElkBridgeBundle\Converter\DataToConvertIsNotAnObject
+     * @expectedException \Clearcode\SimpleBusElkBundle\Converter\DataToConvertIsNotAnObject
      */
     public function it_throws_exception_when_data_to_convert_is_not_object()
     {
@@ -30,7 +30,7 @@ class ObjectToArrayConverterTest extends \PHPUnit_Framework_TestCase
     public function it_serializes_objects()
     {
         $object = new \stdClass();
-        $this->serializer->serialize($object, 'json', Argument::any())->willReturn('{"key": "value"}');
+        $this->serializer->toArray($object, Argument::any())->willReturn(['key' => 'value']);
 
         $data = $this->converter->toArray($object);
 

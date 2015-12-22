@@ -1,9 +1,9 @@
 services:
-    elk_bridge.event_bus.log_event:
-        class: Clearcode\ElkBridgeBundle\CommandBus\LogEventMiddleware
+    simple_bus_elk.event_bus.log_event:
+        class: Clearcode\SimpleBusElkBundle\CommandBus\LogEventMiddleware
         arguments:
             - @logger
-            - @elk_bridge.converter.to_array_converter
+            - @simple_bus_elk.converter.to_array_converter
         tags:
             - { name: event_bus_middleware, priority: 999 }
-            - { name: monolog.logger, channel: '%elk_bridge.channel%' }
+            - { name: monolog.logger, channel: '%simple_bus_elk.channel%' }

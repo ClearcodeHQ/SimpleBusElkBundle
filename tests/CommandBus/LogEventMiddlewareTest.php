@@ -1,9 +1,9 @@
 <?php
 
-namespace tests\Clearcode\ElkBridgeBundle\CommandBus;
+namespace tests\Clearcode\SimpleBusElkBundle\CommandBus;
 
-use Clearcode\ElkBridgeBundle\CommandBus\LogEventMiddleware;
-use Clearcode\ElkBridgeBundle\Converter\ObjectToArrayConverter;
+use Clearcode\SimpleBusElkBundle\CommandBus\LogEventMiddleware;
+use Clearcode\SimpleBusElkBundle\Converter\ObjectToArrayConverter;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Log\LoggerInterface;
