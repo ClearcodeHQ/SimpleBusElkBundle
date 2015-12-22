@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/ClearcodeHQ/SimpleBusElkBundle.svg?branch=master)](https://travis-ci.org/ClearcodeHQ/SimpleBusElkBundle)
+[![Coverage Status](https://coveralls.io/repos/ClearcodeHQ/SimpleBusElkBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/ClearcodeHQ/SimpleBusElkBundle?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ClearcodeHQ/SimpleBusElkBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ClearcodeHQ/SimpleBusElkBundle/?branch=master)
 
 # ELK Bridge for Symfony2
