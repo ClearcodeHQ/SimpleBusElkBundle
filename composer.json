@@ -12,7 +12,6 @@
   "require": {
     "symfony/monolog-bundle": "~2.4",
     "simple-bus/message-bus": "~2.0",
-    "nesbot/carbon": "~1.20",
     "jms/serializer-bundle": "~1.1"
   },
   "autoload": {
