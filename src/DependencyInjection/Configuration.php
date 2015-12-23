@@ -16,6 +16,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->booleanNode('middleware')
                     ->defaultValue(true)
+                ->end()
                 ->scalarNode('logstash_namespace')
                     ->defaultValue('elk')
                 ->end()
