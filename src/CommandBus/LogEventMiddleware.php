@@ -34,7 +34,11 @@ class LogEventMiddleware implements MessageBusMiddleware
      */
     public function handle($message, callable $next)
     {
-        $this->logger->info('Event recorded', $this->converter->toArray($message));
+        try {
+            $this->logger->info('Event recorded', $this->converter->toArray($message));
+        } catch(\Exception $e) {
+            $this->logger->error($e->getMessage());
+        }
 
         $next($message);
     }
