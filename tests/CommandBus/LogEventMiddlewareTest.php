@@ -29,6 +29,20 @@ class LogEventMiddlewareTest extends \PHPUnit_Framework_TestCase
     public function it_logs_message_when_it_is_event()
     {
         $this->logger->info(Argument::cetera())->shouldBeCalled();
+
+        $this->converter->toArray(Argument::any())->willReturn([]);
+
+        $this->sut->handle(new \stdClass(), $this->dummyCallable());
+    }
+
+    /**
+     * @test
+     */
+    public function it_catches_logstash_connection_exceptions()
+    {
+        $this->logger->error('uups... An exception')->shouldBeCalled();
+
+        $this->logger->info(Argument::cetera())->willThrow(new \Exception('uups... An exception'));
         $this->converter->toArray(Argument::any())->willReturn([]);
 
         $this->sut->handle(new \stdClass(), $this->dummyCallable());
