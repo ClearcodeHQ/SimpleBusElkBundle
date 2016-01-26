@@ -25,7 +25,8 @@ class ElkBridgeExtension extends Extension
         $container->setParameter('simple_bus_elk.middleware', $config['middleware']);
 
         if ($config['middleware']) {
-            $loader->load('event_bus.yml');
+            $loader->load('logstash.yml');
+            $loader->load('middlewares.yml');
         }
     }
 

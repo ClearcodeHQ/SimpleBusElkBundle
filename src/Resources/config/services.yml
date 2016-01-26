@@ -2,7 +2,8 @@ services:
     simple_bus_elk.converter.to_array_converter:
         class: Clearcode\SimpleBusElkBundle\Converter\ObjectToArrayConverter
         arguments:
-            - @jms_serializer
+            - "@jms_serializer"
+
     simple_bus_elk.monolog.logstash_formatter:
         class: Monolog\Formatter\LogstashFormatter
         arguments: [ "%simple_bus_elk.logstash_namespace%" ]

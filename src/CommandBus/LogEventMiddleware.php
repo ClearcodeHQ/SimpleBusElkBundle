@@ -2,31 +2,26 @@
 
 namespace Clearcode\SimpleBusElkBundle\CommandBus;
 
-use Clearcode\SimpleBusElkBundle\Converter\ObjectToArrayConverterInterface;
+use Clearcode\SimpleBusElkBundle\Logstash\CannotWriteToLogstash;
+use Clearcode\SimpleBusElkBundle\Logstash\Logstash;
 use Psr\Log\LoggerInterface;
 use SimpleBus\Message\Bus\Middleware\MessageBusMiddleware;
 
 class LogEventMiddleware implements MessageBusMiddleware
 {
-    /**
-     * @var LoggerInterface
-     */
+    /** @var Logstash */
+    private $logstash;
+    /** @var LoggerInterface */
     private $logger;
 
     /**
-     * @var ObjectToArrayConverterInterface
-     */
-    private $converter;
-
-    /**
-     * LogEventMiddleware constructor.
-     *
+     * @param Logstash        $logstash
      * @param LoggerInterface $logger
      */
-    public function __construct(LoggerInterface $logger, ObjectToArrayConverterInterface $converter)
+    public function __construct(Logstash $logstash, LoggerInterface $logger)
     {
-        $this->logger    = $logger;
-        $this->converter = $converter;
+        $this->logstash = $logstash;
+        $this->logger   = $logger;
     }
 
     /**
@@ -34,7 +29,11 @@ class LogEventMiddleware implements MessageBusMiddleware
      */
     public function handle($message, callable $next)
     {
-        $this->logger->info('Event recorded', $this->converter->toArray($message));
+        try {
+            $this->logstash->write($message);
+        } catch (CannotWriteToLogstash $e) {
+            $this->logger->error($e->getMessage());
+        }
 
         $next($message);
     }

@@ -1,9 +1,8 @@
 services:
-    simple_bus_elk.event_bus.log_event:
-        class: Clearcode\SimpleBusElkBundle\CommandBus\LogEventMiddleware
+    simple_bus_elk.logstash:
+        class: Clearcode\SimpleBusElkBundle\Logstash\Logstash
         arguments:
             - @logger
             - @simple_bus_elk.converter.to_array_converter
         tags:
-            - { name: event_bus_middleware, priority: 999 }
             - { name: monolog.logger, channel: '%simple_bus_elk.monolog_channel%' }
