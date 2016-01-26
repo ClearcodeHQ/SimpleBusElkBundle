@@ -3,35 +3,41 @@
 namespace tests\Clearcode\SimpleBusElkBundle\CommandBus;
 
 use Clearcode\SimpleBusElkBundle\CommandBus\LogEventMiddleware;
-use Clearcode\SimpleBusElkBundle\Converter\ObjectToArrayConverter;
+use Clearcode\SimpleBusElkBundle\Logstash\CannotWriteToLogstash;
+use Clearcode\SimpleBusElkBundle\Logstash\Logstash;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Log\LoggerInterface;
 
 class LogEventMiddlewareTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var LogEventMiddleware
-     */
-    private $sut;
-    /**
-     * @var ObjectProphecy|LoggerInterface
-     */
+    /** @var ObjectProphecy|LoggerInterface */
     private $logger;
-    /**
-     * @var ObjectProphecy|ObjectToArrayConverter
-     */
-    private $converter;
+    /** @var Logstash|ObjectProphecy */
+    private $logstash;
+    /** @var LogEventMiddleware */
+    private $middleware;
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_logs_message_when_it_is_event()
     {
-        $this->logger->info(Argument::cetera())->shouldBeCalled();
-        $this->converter->toArray(Argument::any())->willReturn([]);
+        $object = new \stdClass();
 
-        $this->sut->handle(new \stdClass(), $this->dummyCallable());
+        $this->middleware->handle($object, $this->dummyCallable());
+
+        $this->logstash->write($object)->shouldBeCalled();
+        $this->logger->error(Argument::cetera())->shouldNotBeCalled();
+    }
+
+    /** @test */
+    public function it_catches_exception_from_logstash_and_logs_erros()
+    {
+        $object = new \stdClass();
+        $this->logstash->write($object)->willThrow(CannotWriteToLogstash::class);
+
+        $this->middleware->handle($object, $this->dummyCallable());
+
+        $this->logger->error(Argument::cetera())->shouldBeCalled();
     }
 
     private function dummyCallable()
@@ -40,12 +46,20 @@ class LogEventMiddlewareTest extends \PHPUnit_Framework_TestCase
         };
     }
 
+    /** {@inheritdoc} */
     protected function setUp()
     {
-        parent::setUp();
-
         $this->logger    = $this->prophesize(LoggerInterface::class);
-        $this->converter = $this->prophesize(ObjectToArrayConverter::class);
-        $this->sut       = new LogEventMiddleware($this->logger->reveal(), $this->converter->reveal());
+        $this->logstash = $this->prophesize(Logstash::class);
+
+        $this->middleware       = new LogEventMiddleware($this->logstash->reveal(), $this->logger->reveal());
+    }
+
+    /** {@inheritdoc} */
+    protected function tearDown()
+    {
+        $this->logger     = $this->prophesize(LoggerInterface::class);
+        $this->logstash   = $this->prophesize(Logstash::class);
+        $this->middleware = null;
     }
 }
