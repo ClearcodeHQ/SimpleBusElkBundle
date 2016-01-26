@@ -7,9 +7,7 @@ use JMS\Serializer\Serializer;
 
 class ObjectToArrayConverter implements ObjectToArrayConverterInterface
 {
-    /**
-     * @var Serializer
-     */
+    /** @var Serializer */
     private $serializer;
 
     public function __construct(Serializer $serializer)
