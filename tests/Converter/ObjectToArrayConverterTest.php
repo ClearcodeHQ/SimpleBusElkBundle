@@ -11,7 +11,6 @@ class ObjectToArrayConverterTest extends \PHPUnit_Framework_TestCase
 {
     /** @var ObjectToArrayConverter */
     private $converter;
-
     /** @var ObjectProphecy|Serializer */
     private $serializer;
 
@@ -24,9 +23,7 @@ class ObjectToArrayConverterTest extends \PHPUnit_Framework_TestCase
         $this->converter->toArray('not-an-object');
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_serializes_objects()
     {
         $object = new \stdClass();
@@ -47,9 +44,17 @@ class ObjectToArrayConverterTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /** {@inheritdoc} */
     public function setUp()
     {
         $this->serializer = $this->prophesize(Serializer::class);
         $this->converter  = new ObjectToArrayConverter($this->serializer->reveal());
+    }
+
+    /** {@inheritdoc} */
+    protected function tearDown()
+    {
+        $this->serializer = null;
+        $this->converter  = null;
     }
 }

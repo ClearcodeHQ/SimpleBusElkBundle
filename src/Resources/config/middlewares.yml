@@ -1,0 +1,8 @@
+services:
+    simple_bus_elk.event_bus.log_event:
+        class: Clearcode\SimpleBusElkBundle\CommandBus\LogEventMiddleware
+        arguments:
+            - @simple_bus_elk.logstash
+            - @logger
+        tags:
+            - { name: event_bus_middleware, priority: 999 }
