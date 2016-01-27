@@ -19,7 +19,7 @@ class LogEventMiddlewareTest extends \PHPUnit_Framework_TestCase
     private $middleware;
 
     /** @test */
-    public function it_logs_message_when_it_is_event()
+    public function it_logs_message()
     {
         $object = new \stdClass();
 
@@ -49,10 +49,10 @@ class LogEventMiddlewareTest extends \PHPUnit_Framework_TestCase
     /** {@inheritdoc} */
     protected function setUp()
     {
-        $this->logger    = $this->prophesize(LoggerInterface::class);
-        $this->logstash = $this->prophesize(Logstash::class);
+        $this->logger     = $this->prophesize(LoggerInterface::class);
+        $this->logstash   = $this->prophesize(Logstash::class);
 
-        $this->middleware       = new LogEventMiddleware($this->logstash->reveal(), $this->logger->reveal());
+        $this->middleware = new LogEventMiddleware($this->logstash->reveal(), $this->logger->reveal());
     }
 
     /** {@inheritdoc} */
